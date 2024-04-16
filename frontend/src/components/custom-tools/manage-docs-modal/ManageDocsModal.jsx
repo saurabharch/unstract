@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import {
   Button,
+  Checkbox,
   Divider,
   Modal,
   Radio,
@@ -51,6 +52,8 @@ function ManageDocsModal({
   generateIndex,
   handleUpdateTool,
   handleDocChange,
+  isCleanIndex,
+  setIsCleanIndex,
 }) {
   const [isUploading, setIsUploading] = useState(false);
   const [rows, setRows] = useState([]);
@@ -416,6 +419,7 @@ function ManageDocsModal({
     indexDocs,
     messages,
     isSinglePassExtractLoading,
+    isCleanIndex,
   ]);
 
   const beforeUpload = (file) => {
@@ -530,7 +534,7 @@ function ManageDocsModal({
               Manage Documents
             </Typography.Text>
           </Space>
-          <div>
+          <div className="manage-docs-actions">
             <Upload
               name="file"
               action={`/api/v1/unstract/${sessionDetails?.orgId}/prompt-studio/file/${details?.tool_id}`}
@@ -565,6 +569,14 @@ function ManageDocsModal({
                 </Button>
               </Tooltip>
             </Upload>
+            <div>
+              <Checkbox
+                checked={isCleanIndex}
+                onChange={(e) => setIsCleanIndex(e.target.checked)}
+              >
+                Clean Index
+              </Checkbox>
+            </div>
           </div>
           <Divider className="manage-docs-div" />
           <SpaceWrapper>
@@ -597,5 +609,7 @@ ManageDocsModal.propTypes = {
   generateIndex: PropTypes.func.isRequired,
   handleUpdateTool: PropTypes.func.isRequired,
   handleDocChange: PropTypes.func.isRequired,
+  isCleanIndex: PropTypes.bool.isRequired,
+  setIsCleanIndex: PropTypes.func.isRequired,
 };
 export { ManageDocsModal };

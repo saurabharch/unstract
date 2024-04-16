@@ -48,7 +48,13 @@ try {
   // The component will remain null of it is not available
 }
 
-function DocumentManager({ generateIndex, handleUpdateTool, handleDocChange }) {
+function DocumentManager({
+  generateIndex,
+  handleUpdateTool,
+  handleDocChange,
+  isCleanIndex,
+  setIsCleanIndex,
+}) {
   const [openManageDocsModal, setOpenManageDocsModal] = useState(false);
   const [page, setPage] = useState(1);
   const [activeKey, setActiveKey] = useState("1");
@@ -308,6 +314,8 @@ function DocumentManager({ generateIndex, handleUpdateTool, handleDocChange }) {
         generateIndex={generateIndex}
         handleUpdateTool={handleUpdateTool}
         handleDocChange={handleDocChange}
+        isCleanIndex={isCleanIndex}
+        setIsCleanIndex={setIsCleanIndex}
       />
     </div>
   );
@@ -317,6 +325,8 @@ DocumentManager.propTypes = {
   generateIndex: PropTypes.func.isRequired,
   handleUpdateTool: PropTypes.func.isRequired,
   handleDocChange: PropTypes.func.isRequired,
+  isCleanIndex: PropTypes.bool.isRequired,
+  setIsCleanIndex: PropTypes.func.isRequired,
 };
 
 export { DocumentManager };

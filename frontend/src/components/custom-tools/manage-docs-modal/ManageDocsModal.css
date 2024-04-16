@@ -18,3 +18,8 @@
 .manage-docs-div {
     margin: 0;
 }
+
+.manage-docs-actions {
+    display: flex;
+    justify-content: space-between;
+}

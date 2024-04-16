@@ -21,6 +21,7 @@ function ToolIde() {
   const [activeKey, setActiveKey] = useState([]);
   const [openCusSynonymsModal, setOpenCusSynonymsModal] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
+  const [isCleanIndex, setIsCleanIndex] = useState(false);
   const {
     details,
     updateCustomTool,
@@ -82,6 +83,7 @@ function ToolIde() {
 
     const body = {
       document_id: docId,
+      is_clean: isCleanIndex,
     };
 
     const requestOptions = {
@@ -101,6 +103,7 @@ function ToolIde() {
           type: "success",
           content: `${doc?.document_name} - Indexed successfully`,
         });
+        setIsCleanIndex(false);
       })
       .catch((err) => {
         setAlertDetails(
@@ -182,6 +185,8 @@ function ToolIde() {
                   generateIndex={generateIndex}
                   handleUpdateTool={handleUpdateTool}
                   handleDocChange={handleDocChange}
+                  isCleanIndex={isCleanIndex}
+                  setIsCleanIndex={setIsCleanIndex}
                 />
               </div>
             </Col>
